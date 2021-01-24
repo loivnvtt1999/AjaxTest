@@ -139,6 +139,10 @@ namespace DemoAjaxSearch.Controllers
     }
     // Pham Duc Loi
     //Huhuhu
+<<<<<<< HEAD
     //Hello
+=======
+    //Hahhaha
+>>>>>>> 10c7d7dd5cf4a9b6ffa3f48b7f84b6fb8eb2e89e
     
 }
