@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QuanLyDoiBongModelStoreContainer" CdmEntityContainer="QuanLyDoiBongEntities">
+    <EntitySetMapping Name="CauThus">
+      <EntityTypeMapping TypeName="QuanLyDoiBongModel.CauThu">
+        <MappingFragment StoreEntitySet="CauThus">
+          <ScalarProperty Name="macauthu" ColumnName="macauthu" />
+          <ScalarProperty Name="tencauthu" ColumnName="tencauthu" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="sodt" ColumnName="sodt" />
+          <ScalarProperty Name="madoibong" ColumnName="madoibong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

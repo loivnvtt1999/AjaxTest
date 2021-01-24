@@ -1,0 +1,103 @@
+﻿@model IEnumerable<DemoAjaxSearch.Models.CauThu>
+<h2>Index</h2>
+<div class="container">
+    <br /><br />
+    <label>Hình thức tìm kiếm:</label>
+    <select id="SearchBy" class="form-control">
+        <option value="maCT" onclick="changeType(n)">Mã cầu thủ</option>
+        <option value="tenCT">Tên cầu thủ</option>
+    </select>
+    <br />
+    <label>Nội dung tìm kiếm</label>
+    <div style="display:flex;">
+        <input class="form-control" id="Search" />
+        <input class="btn btn-primary" type="submit" id="btnSearch" value="Tìm" />
+    </div>
+    <br /><br />
+    <div class="col-md-12" id="loadingDiv" style="display:none;">
+        <img src="~/Image/loading.gif" />
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Mã cầu thủ
+                </th>
+                <th>
+                    Tên cầu thủ
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Số điện thoại
+                </th>
+                <th>
+                    Đội bóng
+                </th>
+            </tr>
+        </thead>
+        <tbody id="DataSearching">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.macauthu
+                    </td>
+                    <td>
+                        @item.tencauthu
+                    </td>
+                    <td>
+                        @item.email
+                    </td>
+                    <td>
+                        @item.sodt
+                    </td>
+                    <td>
+                        @item.madoibong
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#btnSearch").click(function () {
+            var SearchBy = $("#SearchBy").val();
+            var SearchValue = $("#Search").val();
+            var SetData = $("#DataSearching");
+            SetData.html("");
+            $.ajax({
+                type: "post",
+                url: "/CauThus/GetSearchData?SearchBy=" + SearchBy + "&SearchValue=" + SearchValue,
+                contentType: "html",
+                success: function (result) {
+                    if (result.length == 0) {
+                        SetData.append('<tr><td>Not Found</td></tr>');
+                    }
+                    else {
+                        $.each(result, function (index, value) {
+                            var Data = "<tr>" +
+                                "<td>" + value.macauthu + "</td>" +
+                                "<td>" + value.tencauthu + "</td>" +
+                                "<td>" + value.email + "</td>" +
+                                "<td>" + value.sodt + "</td>" +
+                                "<td>" + value.madoibong + "</td>" +
+                                "</tr>"
+                            SetData.append(Data);
+                        });
+                    }
+                }
+            })
+            $('#loadingDiv').hide()  // Hide it initially
+                .ajaxStart(function () {
+                    $(this).show();
+                })
+                .ajaxStop(function () {
+                    $(this).hide();
+            });
+        })
+    })
+</script>
