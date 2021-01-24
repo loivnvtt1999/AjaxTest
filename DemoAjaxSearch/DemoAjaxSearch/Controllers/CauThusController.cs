@@ -137,4 +137,5 @@ namespace DemoAjaxSearch.Controllers
             base.Dispose(disposing);
         }
     }
+    // Pham Duc Loi
 }
